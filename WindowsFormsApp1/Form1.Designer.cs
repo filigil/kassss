@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -68,6 +69,11 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.timer5 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -160,7 +166,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(421, 691);
+            this.textBox5.Location = new System.Drawing.Point(456, 694);
             this.textBox5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
@@ -170,7 +176,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(421, 556);
+            this.textBox7.Location = new System.Drawing.Point(456, 556);
             this.textBox7.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
@@ -221,7 +227,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(421, 623);
+            this.textBox6.Location = new System.Drawing.Point(456, 623);
             this.textBox6.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
@@ -308,7 +314,7 @@
             "95",
             "DT",
             "92p"});
-            this.comboBox1.Location = new System.Drawing.Point(421, 431);
+            this.comboBox1.Location = new System.Drawing.Point(456, 431);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(344, 39);
@@ -333,7 +339,7 @@
             "1",
             "2",
             "3"});
-            this.comboBox2.Location = new System.Drawing.Point(421, 497);
+            this.comboBox2.Location = new System.Drawing.Point(456, 501);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(344, 39);
@@ -476,11 +482,15 @@
             this.label21.TabIndex = 50;
             this.label21.Text = "label21";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(3562, 1083);
+            this.ClientSize = new System.Drawing.Size(3577, 1307);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
@@ -569,6 +579,11 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Timer timer4;
+        private System.Windows.Forms.Timer timer5;
     }
 }
 
