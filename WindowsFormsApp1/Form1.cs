@@ -8,11 +8,13 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        public static Form1 Instance;
         public Form1()
         {
             InitializeComponent();
+            Instance = this;
         }
-
+        public static string cb1text;
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
@@ -26,6 +28,9 @@ namespace WindowsFormsApp1
         private void Form1_Load(object sender, EventArgs e)
 
         {
+            label19.Text = DateTime.Now.ToShortTimeString();
+            label21.Text = DateTime.Now.ToShortDateString();
+
             MySqlConnection con = Connection.GetConnection();
             MySqlCommand type = new MySqlCommand("SELECT * FROM type", con);
             MySqlDataAdapter tip = new MySqlDataAdapter(type);
@@ -41,6 +46,92 @@ namespace WindowsFormsApp1
             comboBox2.DataSource = cl;
             comboBox2.DisplayMember = "number";
             comboBox2.ValueMember = "id";
+
+
+            MySqlCommand cena = new MySqlCommand("SELECT * FROM ostatok WHERE id = 1", con);
+            MySqlDataReader reader = cena.ExecuteReader();
+            if (reader.HasRows)
+            {
+                reader.Read();
+                var id1 = reader.GetInt32(0);
+                var price = reader.GetString(1);
+                textBox11.Text = price;
+                reader.Close();
+
+            }
+            MySqlCommand cena2 = new MySqlCommand("SELECT * FROM ostatok WHERE id = 2", con);
+            MySqlDataReader reader2 = cena2.ExecuteReader();
+            if (reader2.HasRows)
+            {
+                reader2.Read();
+                var id1 = reader2.GetInt32(0);
+                var price = reader2.GetString(1);
+                textBox14.Text = price;
+                reader2.Close();
+            }
+            MySqlCommand cena3 = new MySqlCommand("SELECT * FROM ostatok WHERE id = 3", con);
+            MySqlDataReader reader3 = cena3.ExecuteReader();
+            if (reader3.HasRows)
+            {
+                reader3.Read();
+                var id1 = reader3.GetInt32(0);
+                var price = reader3.GetString(1);
+                textBox13.Text = price;
+                reader3.Close();
+            }
+            MySqlCommand cena4 = new MySqlCommand("SELECT * FROM ostatok WHERE id = 4", con);
+            MySqlDataReader reader4 = cena4.ExecuteReader();
+            if (reader4.HasRows)
+            {
+                reader4.Read();
+                var id1 = reader4.GetInt32(0);
+                var price = reader4.GetString(1);
+                textBox12.Text = price;
+                reader4.Close();
+            }
+
+
+            MySqlCommand ost = new MySqlCommand("SELECT * FROM ostatok WHERE id = 1", con);
+            MySqlDataReader readerost = ost.ExecuteReader();
+            if (readerost.HasRows)
+            {
+                readerost.Read();
+                var id1 = readerost.GetInt32(0);
+                var ostatok = readerost.GetString(3);
+                textBox1.Text = ostatok;
+                readerost.Close();
+
+            }
+            MySqlCommand ost2 = new MySqlCommand("SELECT * FROM ostatok WHERE id = 2", con);
+            MySqlDataReader readerost2 = ost2.ExecuteReader();
+            if (readerost2.HasRows)
+            {
+                readerost2.Read();
+                var id1 = readerost2.GetInt32(0);
+                var ostatok = readerost2.GetString(3);
+                textBox2.Text = ostatok;
+                readerost2.Close();
+            }
+            MySqlCommand ost3 = new MySqlCommand("SELECT * FROM ostatok WHERE id = 3", con);
+            MySqlDataReader readerost3 = ost3.ExecuteReader();
+            if (readerost3.HasRows)
+            {
+                readerost3.Read();
+                var id1 = readerost3.GetInt32(0);
+                var ostatok = readerost3.GetString(3);
+                textBox3.Text = ostatok;
+                readerost3.Close();
+            }
+            MySqlCommand ost4 = new MySqlCommand("SELECT * FROM ostatok WHERE id = 4", con);
+            MySqlDataReader readerost4 = ost4.ExecuteReader();
+            if (readerost4.HasRows)
+            {
+                readerost4.Read();
+                var id1 = readerost4.GetInt32(0);
+                var ostatok = readerost4.GetString(3);
+                textBox4.Text = ostatok;
+                readerost4.Close();
+            }
         }
 
 
@@ -322,18 +413,20 @@ namespace WindowsFormsApp1
                 }
             } catch { };
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedValue.ToString() == "1")
-            {
-                string m = Convert.ToString(textBox7.Text);
-                string g = Convert.ToString(comboBox2.Text);
-                string j = Convert.ToString(textBox1.Text);
-                string p = Convert.ToString(textBox6.Text);
-                string o = Convert.ToString(textBox5.Text);
-                //m = label17.Text;
-            }
+            Form2 newForm = new Form2();
+            newForm.Show();
+            Form2.Instance.lab6.Text = comboBox1.Text;
+            Form2.Instance.lab7.Text = comboBox2.Text;
+            Form2.Instance.lab8.Text = textBox7.Text;
+            Form2.Instance.lab9.Text = textBox6.Text;
+            Form2.Instance.lab10.Text = label19.Text;
+            Form2.Instance.lab12.Text = label21.Text;
+
+
+
         }
 
         private void button2_Click_1(object sender, EventArgs e)
