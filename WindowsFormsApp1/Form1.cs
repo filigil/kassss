@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Google.Protobuf.WellKnownTypes;
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -159,7 +160,7 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-       
+
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -259,25 +260,25 @@ namespace WindowsFormsApp1
 
         private void button5_Click(object sender, EventArgs e)
         {
-           MySqlConnection con = Connection.GetConnection();
+            MySqlConnection con = Connection.GetConnection();
 
-            update_cena(1,Convert.ToDouble(textBox11.Text), con);
+            update_cena(1, Convert.ToDouble(textBox11.Text), con);
             update_cena(2, Convert.ToDouble(textBox14.Text), con);
             update_cena(3, Convert.ToDouble(textBox13.Text), con);
             update_cena(4, Convert.ToDouble(textBox12.Text), con);
             con.Close();
-          
 
-           MessageBox.Show("Цена успешно обновлена.");
+
+            MessageBox.Show("Цена успешно обновлена.");
         }
         private void update_cena(int id, double price, MySqlConnection con)
         {
             string updatecena92 = "UPDATE ostatok SET price = @price WHERE id = @id";
             MySqlCommand upcena92 = new MySqlCommand(updatecena92, con);
-            upcena92.Parameters.Add(new MySqlParameter("@price", price  ));
+            upcena92.Parameters.Add(new MySqlParameter("@price", price));
             upcena92.Parameters.Add(new MySqlParameter("@id", id));
             upcena92.ExecuteNonQuery();
-            
+
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
@@ -316,8 +317,25 @@ namespace WindowsFormsApp1
                     textBox6.Text = i.ToString();
                     textBox5.Text = textBox6.Text.ToString();
                 }
-            } 
+                double num = 0;
+                try
+                {
+                    num = Convert.ToDouble(textBox7.Text);
+
+                    if (num < 0)
+                    {
+                        throw new Exception();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Введено отрицательное значение");
+                }
+
+
+            }
             catch { };
+
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -368,10 +386,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            var vidtopliva = "SELECT * FROM type";
-        }
+
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -381,7 +396,8 @@ namespace WindowsFormsApp1
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
-        {  try
+        {
+            try
             {
                 if (comboBox1.SelectedValue.ToString() == "1")
                 {
@@ -411,20 +427,58 @@ namespace WindowsFormsApp1
                     double p = j / k;
                     textBox7.Text = p.ToString();
                 }
-            } catch { };
+            }
+            catch { };
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 newForm = new Form2();
-            newForm.Show();
-            Form2.Instance.lab6.Text = comboBox1.Text;
-            Form2.Instance.lab7.Text = comboBox2.Text;
-            Form2.Instance.lab8.Text = textBox7.Text;
-            Form2.Instance.lab9.Text = textBox6.Text;
-            Form2.Instance.lab10.Text = label19.Text;
-            Form2.Instance.lab12.Text = label21.Text;
+            
+            int selected_fuel = Convert.ToInt32(comboBox1.SelectedValue.ToString());
+            double litri = Convert.ToDouble(textBox7.Text);
+            double ostatok = 0;
 
+            if (selected_fuel == 1)
+            {
+                ostatok = Convert.ToDouble(textBox1.Text);
+            }
+            else
+            if (selected_fuel == 2)
+            {
+                ostatok = Convert.ToDouble(textBox2.Text);
+            }
+            else
+            if (selected_fuel == 3)
+            {
+                ostatok = Convert.ToDouble(textBox3.Text);
+            }
+            else
+            if (selected_fuel == 4)
+            {
+                ostatok = Convert.ToDouble(textBox4.Text);
+            }
+
+
+            if (ostatok < litri)
+            {
+                MessageBox.Show("Недостаточно литров");
+            }
+            else
+            {
+                double new_ostatok = ostatok - litri;
+                MySqlConnection con = Connection.GetConnection();
+
+                update_ost(selected_fuel, new_ostatok, con);
+                con.Close();
+                Form2 newForm = new Form2();
+                newForm.Show();
+                Form2.Instance.lab6.Text = comboBox1.Text;
+                Form2.Instance.lab7.Text = comboBox2.Text;
+                Form2.Instance.lab8.Text = textBox7.Text;
+                Form2.Instance.lab9.Text = textBox6.Text;
+                Form2.Instance.lab10.Text = label19.Text;
+                Form2.Instance.lab12.Text = label21.Text;
+            }
 
 
         }
@@ -446,11 +500,11 @@ namespace WindowsFormsApp1
         {
             string updateost = "UPDATE ostatok SET ostatok = @ostatok WHERE id = @id";
             MySqlCommand upost = new MySqlCommand(updateost, con);
-            upost.Parameters.Add(new MySqlParameter("@ostatok", ostatok  ));
+            upost.Parameters.Add(new MySqlParameter("@ostatok", ostatok));
             upost.Parameters.Add(new MySqlParameter("@id", id));
             upost.ExecuteNonQuery();
-            
-       
+
+
         }
     }
 
