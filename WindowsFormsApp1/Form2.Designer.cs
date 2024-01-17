@@ -40,6 +40,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -152,11 +153,22 @@
             this.label12.TabIndex = 11;
             this.label12.Text = "label12";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(601, 504);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 63);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Печать чека";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 555);
+            this.ClientSize = new System.Drawing.Size(863, 669);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -190,5 +202,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button button1;
     }
 }

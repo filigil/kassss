@@ -12,7 +12,7 @@ namespace WindowsFormsApp1.Data
     {
         public static MySqlConnection GetConnection()
         {
-            string sql = "datasource=26.46.2.185;port=3306;username=vika;password=QWErty123;database=new_schema";
+            string sql = "datasource=172.16.50.20;port=3306;username=vika;password=123321;database=new_schema";
             MySqlConnection con = new MySqlConnection(sql);
             try
             {

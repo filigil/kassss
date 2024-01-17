@@ -470,6 +470,7 @@ namespace WindowsFormsApp1
 
                 update_ost(selected_fuel, new_ostatok, con);
                 con.Close();
+                Form1_Load(sender,e);
                 Form2 newForm = new Form2();
                 newForm.Show();
                 Form2.Instance.lab6.Text = comboBox1.Text;
@@ -503,7 +504,7 @@ namespace WindowsFormsApp1
             upost.Parameters.Add(new MySqlParameter("@ostatok", ostatok));
             upost.Parameters.Add(new MySqlParameter("@id", id));
             upost.ExecuteNonQuery();
-
+            
 
         }
     }
