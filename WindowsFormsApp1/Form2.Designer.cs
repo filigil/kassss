@@ -111,6 +111,7 @@
             this.label7.Size = new System.Drawing.Size(92, 32);
             this.label7.TabIndex = 6;
             this.label7.Text = "label7";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 

@@ -14,6 +14,11 @@ namespace WindowsFormsApp1
         public static string itog;
         public static string vremjapokupki;
         public static string datapokupki;
+        public static string cena_litra92;
+        public static string cena_litra95;
+        public static string cena_litraDT;
+        public static string cena_litra92p;
+        public static string cena_litra;
 
 
 

@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using WindowsFormsApp1.Data;
 
@@ -471,42 +472,45 @@ namespace WindowsFormsApp1
 
                     update_ost(selected_fuel, new_ostatok, con);
                     con.Close();
-                    Form1_Load(sender, e);
+                    Form1 load = new Form1();
                     Form2 newForm = new Form2();
                     newForm.Show();
+                    int nomerkolonki = Convert.ToInt32(comboBox2.SelectedValue.ToString());
                     Form2.Instance.lab6.Text = comboBox1.Text;
-                    Form2.Instance.lab7.Text = comboBox2.Text;
+                    Form2.Instance.lab7.Text = nomerkolonki.ToString();
                     Form2.Instance.lab8.Text = textBox7.Text;
                     Form2.Instance.lab9.Text = textBox6.Text;
                     Form2.Instance.lab10.Text = label19.Text;
                     Form2.Instance.lab12.Text = label21.Text;
 
                     @public.tiptopl = comboBox1.Text;
-                    @public.nomerkol = comboBox2.Text;
+
+                    @public.nomerkol = nomerkolonki.ToString();
                     @public.kollitr = textBox7.Text;
                     @public.itog = textBox6.Text;
                     @public.vremjapokupki = label19.Text;
                     @public.datapokupki = label21.Text;
+                    @public.cena_litra92 = textBox11.Text;
+                    @public.cena_litra95 = textBox14.Text;
+                    @public.cena_litraDT = textBox13.Text;
+                    @public.cena_litra92p = textBox12.Text;
+                    @public.cena_litra = selected_fuel.ToString();
 
-                }
-                double num = 0;
-                try
-                {
-                    num = Convert.ToDouble(textBox7.Text);
-
-                    if (num < 0)
+                    double num = 0;
+                    try
                     {
-                        throw new Exception();
+                        num = Convert.ToDouble(textBox5.Text);
+
+                        if (num < 0)
+                        {
+                            throw new Exception();
+                        }
                     }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Введите значения");
+                    catch (Exception) { };
                 }
             }
+
             catch { };
-
-
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -531,7 +535,22 @@ namespace WindowsFormsApp1
             
 
         }
-    }
 
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+ 
 
 }
