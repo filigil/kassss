@@ -383,7 +383,7 @@ namespace WindowsFormsApp1
                 readerost4.Close();
             }
             con.Close();
-
+         
         }
 
 
@@ -433,60 +433,84 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            int selected_fuel = Convert.ToInt32(comboBox1.SelectedValue.ToString());
-            double litri = Convert.ToDouble(textBox7.Text);
-            double ostatok = 0;
+            try
+            {
+                int selected_fuel = Convert.ToInt32(comboBox1.SelectedValue.ToString());
+                double litri = Convert.ToDouble(textBox7.Text);
+                double ostatok = 0;
 
-            if (selected_fuel == 1)
-            {
-                ostatok = Convert.ToDouble(textBox1.Text);
-            }
-            else
-            if (selected_fuel == 2)
-            {
-                ostatok = Convert.ToDouble(textBox2.Text);
-            }
-            else
-            if (selected_fuel == 3)
-            {
-                ostatok = Convert.ToDouble(textBox3.Text);
-            }
-            else
-            if (selected_fuel == 4)
-            {
-                ostatok = Convert.ToDouble(textBox4.Text);
-            }
+                if (selected_fuel == 1)
+                {
+                    ostatok = Convert.ToDouble(textBox1.Text);
+                }
+                else
+                if (selected_fuel == 2)
+                {
+                    ostatok = Convert.ToDouble(textBox2.Text);
+                }
+                else
+                if (selected_fuel == 3)
+                {
+                    ostatok = Convert.ToDouble(textBox3.Text);
+                }
+                else
+                if (selected_fuel == 4)
+                {
+                    ostatok = Convert.ToDouble(textBox4.Text);
+                }
 
 
-            if (ostatok < litri)
-            {
-                MessageBox.Show("Недостаточно литров");
-            }
-            else
-            {
-                double new_ostatok = ostatok - litri;
-                MySqlConnection con = Connection.GetConnection();
+                if (ostatok < litri)
+                {
+                    MessageBox.Show("Недостаточно литров");
+                }
+                else
+                {
+                    double new_ostatok = ostatok - litri;
+                    MySqlConnection con = Connection.GetConnection();
 
-                update_ost(selected_fuel, new_ostatok, con);
-                con.Close();
-                Form1_Load(sender,e);
-                Form2 newForm = new Form2();
-                newForm.Show();
-                Form2.Instance.lab6.Text = comboBox1.Text;
-                Form2.Instance.lab7.Text = comboBox2.Text;
-                Form2.Instance.lab8.Text = textBox7.Text;
-                Form2.Instance.lab9.Text = textBox6.Text;
-                Form2.Instance.lab10.Text = label19.Text;
-                Form2.Instance.lab12.Text = label21.Text;
+                    update_ost(selected_fuel, new_ostatok, con);
+                    con.Close();
+                    Form1_Load(sender, e);
+                    Form2 newForm = new Form2();
+                    newForm.Show();
+                    Form2.Instance.lab6.Text = comboBox1.Text;
+                    Form2.Instance.lab7.Text = comboBox2.Text;
+                    Form2.Instance.lab8.Text = textBox7.Text;
+                    Form2.Instance.lab9.Text = textBox6.Text;
+                    Form2.Instance.lab10.Text = label19.Text;
+                    Form2.Instance.lab12.Text = label21.Text;
+
+                    @public.tiptopl = comboBox1.Text;
+                    @public.nomerkol = comboBox2.Text;
+                    @public.kollitr = textBox7.Text;
+                    @public.itog = textBox6.Text;
+                    @public.vremjapokupki = label19.Text;
+                    @public.datapokupki = label21.Text;
+
+                }
+                double num = 0;
+                try
+                {
+                    num = Convert.ToDouble(textBox7.Text);
+
+                    if (num < 0)
+                    {
+                        throw new Exception();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Введите значения");
+                }
             }
+            catch { };
 
 
         }
 
         private void button2_Click_1(object sender, EventArgs e)
-        {
-            MySqlConnection con = Connection.GetConnection();
+        {            MySqlConnection con = Connection.GetConnection();
 
             update_ost(1, Convert.ToDouble(textBox1.Text), con);
             update_ost(2, Convert.ToDouble(textBox2.Text), con);

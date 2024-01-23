@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Data;
 
 namespace WindowsFormsApp1
 {
@@ -48,35 +49,24 @@ namespace WindowsFormsApp1
         {
 
         }
-
-       
-        private void button1_Click(object sender, EventArgs e)
+        private void printDocument1_PrintPage_1(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            
-            CaptureScreen();
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage_1);
-            printDocument1.Print();
-            
-        }
-        Bitmap memoryImage;
-        PrintDocument printDocument1 = new PrintDocument();
-
-
-        private void CaptureScreen()
-        {
-            Graphics myGraphics = this.CreateGraphics();
-            Size s = this.Size;
-            memoryImage = new Bitmap(s.Width, s.Height, myGraphics);
-            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
-            memoryGraphics.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, s);
+           
         }
 
 
+       // Bitmap bmp;
+       private void button1_Click(object sender, EventArgs e)
+       {
+        
 
+            Connection.Create_pdf();
+        }
 
-        private void printDocument1_PrintPage_1(object sender, PrintPageEventArgs e)
+        private void Form2_Load_1(object sender, EventArgs e)
         {
-            e.Graphics.DrawImage(memoryImage, 0, 0);
+
+
         }
     }
 
